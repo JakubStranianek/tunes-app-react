@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  background-color: #23272d;
+  height: 100vh;
+  overflow-y: auto;
+
+  header {
+    display: flex;
+    justify-content: center;
+  }
+
+  hr {
+    margin-top: 60px;
+  }
+}
