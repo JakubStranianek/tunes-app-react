@@ -1,25 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 
+interface Props {
+  formInput: string
+  onInputChange: (data: string) => void
+  onSearchFormSubmit: (data: string) => void
+}
 
-function TunesFormInput() {
-    const [formInput, setFormInput] = useState("")
-    
+const TunesFormInput: React.FC<Props> = props => {
+  const {formInput} = props
+
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-    
-        setFormInput(e.target.value)
+        props.onInputChange(e.target.value)
     }
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
-        // const newArtist = {
-        //   id: Math.max(...artist.map(s => s.id)) + 1, 
-        //   author: formInput,
-        //   song: formInput
-        // }
-    
-        // setArtist([...artist, newArtist])
+        props.onSearchFormSubmit(formInput);
       }
 
     return (

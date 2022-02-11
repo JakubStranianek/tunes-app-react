@@ -6,7 +6,7 @@ import TunesListOfArtist from '../components/TunesListOfArtist';
 const Tunes = () => {
   const [formInput, setFormInput] = useState("")
 
-  const [artist, setArtist] = useState([
+  const [songs, setSongs] = useState([
     {
       id: 1,
       author: "Jozo Raz",
@@ -33,29 +33,28 @@ const Tunes = () => {
   ])
 
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    setFormInput(e.target.value)
-  }
-
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSearchFormSubmit = (data: string) => {
     const newArtist = {
-      id: Math.max(...artist.map(s => s.id)) + 1, 
-      author: formInput,
-      song: formInput
+      id: Math.max(...songs.map(s => s.id)) + 1, 
+      author: data,
+      song: data
     }
 
-    setArtist([...artist, newArtist])
+    setSongs([...songs, newArtist])
+  }
+
+
+  const handleInputChange = (data: string) => {
+    setFormInput(data);
   }
 
   return (
     <div>
       <h2>Tunes</h2>
-      <TunesFormInput />
-      <TunesListOfArtist />
+      <TunesFormInput onSearchFormSubmit={handleSearchFormSubmit}
+      formInput={formInput}
+      onInputChange={handleInputChange}/>
+      <TunesListOfArtist songs={songs}/>
     </div>
   )  
 

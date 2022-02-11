@@ -1,36 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {Song} from "../types/index"
 
+interface Props {
+    songs: Song[]
+}
 
-function TunesListOfArtist() {
-    const [artist, setArtist] = useState([
-        {
-          id: 1,
-          author: "Jozo Raz",
-          song: "Laska moja"
-        }, 
+const TunesListOfArtist: React.FC<Props> = props => {
+  const {songs} = props
     
-        {
-          id: 2,
-          author: "Peter Nagy",
-          song: "Laska je tu snami"
-        },
-    
-        {
-          id: 3,
-          author: "Rytmus",
-          song: "AKM"
-        },
-    
-        {
-          id: 4,
-          author: "Separ (Miško)",
-          song: "OG"
-        },
-      ])
-  
-    return (
+  return (
     <ul>
-    {artist.map(index => (
+    {songs.map(index => (
       <li key={index.id}>{JSON.stringify(index)}</li>
     ))}
   </ul>
