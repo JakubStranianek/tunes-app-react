@@ -1,27 +1,28 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import "../components/TunesFormInput.scss"
 
-interface Props {
-  formInput: string
-  onInputChange: (data: string) => void
-  onSearchFormSubmit: (data: string) => void
-}
+
+interface Props {}
 
 const TunesFormInput: React.FC<Props> = props => {
-  const {formInput} = props
+  const searchIpnut = useRef<HTMLInputElement>(null)
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        props.onInputChange(e.target.value)
+    const handleInput =(e: React.ChangeEvent<HTMLInputElement>) => {
+        searchForMusic();
     }
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        props.onSearchFormSubmit(formInput);
-      }
+      e.preventDefault();
+      searchForMusic();
+  }
+
+    const searchForMusic = () => {
+        console.log(searchIpnut.current?.value)
+    }
 
     return (
     <form onSubmit={handleSubmit}>
-      <input type="text" onChange={handleInput}/>
+      <input type="text" autoFocus id='color' onChange={handleInput} ref={searchIpnut}/>
     </form>
   )
 }

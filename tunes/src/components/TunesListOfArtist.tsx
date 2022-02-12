@@ -1,6 +1,8 @@
 import React from 'react';
 import {Song} from "../types/index"
 
+import "../components/TunesListOfArtist.scss"
+
 interface Props {
     songs: Song[]
 }
